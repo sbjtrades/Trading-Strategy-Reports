@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NQ/MNQ 2025 Drill-Down — 30-Sec OR Ladder Rotations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+            background: #1e1e2e;
+            color: #cdd6f4;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #45475a;
+            padding-bottom: 20px;
+        }
+        
+        .breadcrumb {
+            font-size: 0.85em;
+            color: #6c7086;
+            margin-bottom: 10px;
+        }
+        
+        .breadcrumb a {
+            color: #89b4fa;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        h1 {
+            font-size: 2em;
+            color: #a6e3a1;
+            margin-bottom: 10px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            padding: 20px;
+            background: #252535;
+            border-radius: 8px;
+        }
+        
+        .nav-tabs button {
+            padding: 10px 20px;
+            border: 2px solid #45475a;
+            background: #252535;
+            color: #cdd6f4;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+            font-weight: 600;
+        }
+        
+        .nav-tabs button:hover {
+            border-color: #a6e3a1;
+            color: #a6e3a1;
+        }
+        
+        .nav-tabs button.active {
+            background: #a6e3a1;
+            color: #1e1e2e;
+            border-color: #a6e3a1;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .report-frame {
+            width: 100%;
+            height: 90vh;
+            border: 1px solid #45475a;
+            border-radius: 8px;
+            background: #1e1e2e;
+            margin-bottom: 30px;
+        }
+        
+        .grid-2col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .drilldown-card {
+            background: #252535;
+            border: 2px solid #45475a;
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .drilldown-card:hover {
+            background: #2a2a3a;
+            border-color: #a6e3a1;
+            transform: translateY(-2px);
+        }
+        
+        .card-title {
+            font-size: 1.2em;
+            color: #a6e3a1;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .card-meta {
+            font-size: 0.9em;
+            color: #6c7086;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.85em;
+            color: #6c7086;
+            padding-top: 20px;
+            border-top: 1px solid #45475a;
+        }
+        
+        .section-title {
+            font-size: 1.3em;
+            color: #cba6f7;
+            margin: 30px 0 20px 0;
+            border-bottom: 2px solid #45475a;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="breadcrumb">
+                <a href="../../index.html">← Home</a> / 
+                <a href="../nq.html">NQ/MNQ</a> / 
+                <strong>2025 Drill-Down</strong>
+            </div>
+            <h1>📊 2025 Analysis — NQ/MNQ</h1>
+            <p style="color: #6c7086;">Full year with quarterly, monthly, and daily drill-down</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab(event, 'yearly')">📈 2025 Yearly</button>
+            <button class="tab-btn" onclick="switchTab(event, 'quarterly')">🔷 By Quarter</button>
+            <button class="tab-btn" onclick="switchTab(event, 'monthly')">📅 By Month</button>
+            <button class="tab-btn" onclick="switchTab(event, 'daily')">📆 Daily Summary</button>
+        </div>
+        
+        <!-- YEARLY TAB -->
+        <div id="yearly" class="tab-content active">
+            <iframe src="reports/nq/drill-down/2025/yearly/index.html" class="report-frame"></iframe>
+        </div>
+        
+        <!-- QUARTERLY TAB -->
+        <div id="quarterly" class="tab-content">
+            <h2 class="section-title">2025 Quarterly Breakdown</h2>
+            <p style="color: #6c7086; margin-bottom: 20px;">Select a quarter to view detailed analysis:</p>
+            <div class="grid-2col">
+                <a href="q1-2025.html" class="drilldown-card">
+                    <div class="card-title">Q1 2025</div>
+                    <div class="card-meta">January — March</div>
+                    <p>View Q1 performance with monthly breakdowns</p>
+                </a>
+                <a href="q2-2025.html" class="drilldown-card">
+                    <div class="card-title">Q2 2025</div>
+                    <div class="card-meta">April — June</div>
+                    <p>View Q2 performance with monthly breakdowns</p>
+                </a>
+                <a href="q3-2025.html" class="drilldown-card">
+                    <div class="card-title">Q3 2025</div>
+                    <div class="card-meta">July — September</div>
+                    <p>View Q3 performance with monthly breakdowns</p>
+                </a>
+                <a href="q4-2025.html" class="drilldown-card">
+                    <div class="card-title">Q4 2025</div>
+                    <div class="card-meta">October — December</div>
+                    <p>View Q4 performance with monthly breakdowns</p>
+                </a>
+            </div>
+        </div>
+        
+        <!-- MONTHLY TAB -->
+        <div id="monthly" class="tab-content">
+            <h2 class="section-title">2025 Monthly Breakdown</h2>
+            <p style="color: #6c7086; margin-bottom: 20px;">Select a month to view detailed analysis:</p>
+            <div class="grid-2col">
+                <a href="month-01-2025.html" class="drilldown-card">
+                    <div class="card-title">January 2025</div>
+                </a>
+                <a href="month-02-2025.html" class="drilldown-card">
+                    <div class="card-title">February 2025</div>
+                </a>
+                <a href="month-03-2025.html" class="drilldown-card">
+                    <div class="card-title">March 2025</div>
+                </a>
+                <a href="month-04-2025.html" class="drilldown-card">
+                    <div class="card-title">April 2025</div>
+                </a>
+                <a href="month-05-2025.html" class="drilldown-card">
+                    <div class="card-title">May 2025</div>
+                </a>
+                <a href="month-06-2025.html" class="drilldown-card">
+                    <div class="card-title">June 2025</div>
+                </a>
+                <a href="month-07-2025.html" class="drilldown-card">
+                    <div class="card-title">July 2025</div>
+                </a>
+                <a href="month-08-2025.html" class="drilldown-card">
+                    <div class="card-title">August 2025</div>
+                </a>
+                <a href="month-09-2025.html" class="drilldown-card">
+                    <div class="card-title">September 2025</div>
+                </a>
+                <a href="month-10-2025.html" class="drilldown-card">
+                    <div class="card-title">October 2025</div>
+                </a>
+                <a href="month-11-2025.html" class="drilldown-card">
+                    <div class="card-title">November 2025</div>
+                </a>
+                <a href="month-12-2025.html" class="drilldown-card">
+                    <div class="card-title">December 2025</div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- DAILY TAB -->
+        <div id="daily" class="tab-content">
+            <iframe src="daily-summary-2025.html" class="report-frame" style="height: 800px;"></iframe>
+        </div>
+        
+        <footer>
+            All reports generated from master backtest data | NQ/MNQ 30-Second OR Ladder Rotations
+        </footer>
+    </div>
+    
+    <script>
+        function switchTab(event, tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
