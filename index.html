@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>30-Sec OR Ladder Rotations — Strategy Analysis</title>
+    <title>30-Sec OR Ladder Rotations — Trading Strategy Reports</title>
     <style>
         * {
             margin: 0;
@@ -19,98 +19,147 @@
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         
         header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 50px;
             border-bottom: 2px solid #45475a;
-            padding-bottom: 20px;
+            padding-bottom: 30px;
         }
         
         h1 {
-            font-size: 2em;
+            font-size: 2.5em;
             color: #a6e3a1;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
         
         .subtitle {
+            font-size: 1.1em;
+            color: #6c7086;
+            margin-bottom: 5px;
+        }
+        
+        .tagline {
             font-size: 0.95em;
             color: #6c7086;
+            font-style: italic;
         }
         
-        .instrument-tabs {
-            display: flex;
-            gap: 0;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #45475a;
-            background: #252535;
-            border-radius: 8px 8px 0 0;
-            overflow: hidden;
-        }
-        
-        .instrument-tabs button {
-            flex: 1;
-            padding: 14px 24px;
-            border: none;
-            background: #252535;
-            color: #6c7086;
-            font-size: 1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
-            border-bottom: 3px solid transparent;
-        }
-        
-        .instrument-tabs button:hover {
-            background: #2a2a3a;
-            color: #a6e3a1;
-        }
-        
-        .instrument-tabs button.active {
-            background: #313244;
-            color: #a6e3a1;
-            border-bottom: 3px solid #a6e3a1;
-        }
-        
-        .instrument-content {
-            display: none;
-        }
-        
-        .instrument-content.active {
-            display: block;
-        }
-        
-        .report-frame {
-            width: 100%;
-            height: 90vh;
-            border: 1px solid #45475a;
-            border-radius: 8px;
-            background: #1e1e2e;
-        }
-        
-        footer {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 0.85em;
-            color: #6c7086;
-            padding-top: 15px;
-            border-top: 1px solid #45475a;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .report-grid {
+        .instrument-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 25px;
-            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .instrument-card {
+            background: #252535;
+            border: 2px solid #45475a;
+            border-radius: 8px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .instrument-card:hover {
+            background: #2a2a3a;
+            border-color: #a6e3a1;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(166, 227, 161, 0.2);
+        }
+        
+        .card-emoji {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .card-title {
+            font-size: 1.4em;
+            color: #a6e3a1;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .card-meta {
+            font-size: 0.9em;
+            color: #6c7086;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .card-desc {
+            font-size: 0.95em;
+            color: #b4befe;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .card-button {
+            background: #45475a;
+            color: #a6e3a1;
+            padding: 10px 16px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .instrument-card:hover .card-button {
+            background: #a6e3a1;
+            color: #1e1e2e;
+        }
+        
+        .future-badge {
+            background: #6c7086;
+            color: #cdd6f4;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .disabled-card {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .disabled-card:hover {
+            background: #252535;
+            border-color: #45475a;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .info-box {
+            background: #313244;
+            border-left: 4px solid #a6e3a1;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        
+        footer {
+            text-align: center;
+            font-size: 0.85em;
+            color: #6c7086;
+            padding-top: 30px;
+            border-top: 1px solid #45475a;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
         }
         
         .report-card {
@@ -199,59 +248,80 @@
     <div class="container">
         <header>
             <h1>📊 30-Sec OR Ladder Rotations</h1>
-            <p class="subtitle">3-Year Backtest Analysis with Multi-Instrument Comparison</p>
+            <p class="subtitle">Interactive Strategy Analysis & Backtesting Reports</p>
+            <p class="tagline">Multi-instrument analysis • Daily & weekly snapshots • 7-tab detailed metrics</p>
         </header>
         
-        <div class="instrument-tabs">
-            <button class="tab-btn active" onclick="switchInstrument(event, 'nq')">
-                📈 NQ/MNQ — 7,027 trades
-            </button>
-            <button class="tab-btn" onclick="switchInstrument(event, 'es')">
-                📊 ES/MES — Multi-year backtest
-            </button>
+        <div class="info-box">
+            <strong>📈 What's Inside:</strong> Complete trading analysis with entry ladder performance, P&L breakdowns, time & day patterns (with expense metrics), risk & reward metrics, and detailed trade analysis. Each report includes master backtests and latest weekly snapshots.
         </div>
         
-        <div id="nq" class="instrument-content active">
-            <iframe 
-                src="30-sec-or-ladder-rotations/reports/master/index.html" 
-                class="report-frame"
-                frameborder="0"
-                allow="fullscreen"
-            ></iframe>
-        </div>
+        <h2 style="font-size: 1.3em; color: #cba6f7; margin-bottom: 25px; text-align: center;">SELECT AN INSTRUMENT</h2>
         
-        <div id="es" class="instrument-content">
-            <iframe 
-                src="es-mes/reports/master/index.html" 
-                class="report-frame"
-                frameborder="0"
-                allow="fullscreen"
-            ></iframe>
+        <div class="instrument-grid">
+            <!-- NQ/MNQ -->
+            <a href="nq.html" class="instrument-card">
+                <div class="card-emoji">📈</div>
+                <div class="card-title">NQ / MNQ</div>
+                <div class="card-meta">
+                    Micro E-mini NASDAQ 100<br>
+                    <strong>3-Year Analysis</strong>
+                </div>
+                <div class="card-desc">
+                    7,027 trades analyzed from June 2023 to April 2026. Includes 3-year master report and latest weekly snapshot.
+                </div>
+                <div class="card-button">View Reports →</div>
+            </a>
+            
+            <!-- ES/MES -->
+            <a href="es.html" class="instrument-card">
+                <div class="card-emoji">📊</div>
+                <div class="card-title">ES / MES</div>
+                <div class="card-meta">
+                    Micro E-mini S&P 500<br>
+                    <strong>Multi-Year Analysis</strong>
+                </div>
+                <div class="card-desc">
+                    Comprehensive backtest with multi-year data. Compare ES/MES performance against NQ/MNQ using the same entry methodology.
+                </div>
+                <div class="card-button">View Reports →</div>
+            </a>
+            
+            <!-- GC/MGC (Future) -->
+            <div class="instrument-card disabled-card">
+                <div class="card-emoji">🥇</div>
+                <div class="card-title">GC / MGC</div>
+                <div class="future-badge">COMING SOON</div>
+                <div class="card-meta">
+                    Micro Gold Futures<br>
+                    <strong>In Development</strong>
+                </div>
+                <div class="card-desc">
+                    Extended analysis to precious metals trading using the same 30-second OR ladder rotation strategy. Launching soon.
+                </div>
+                <div class="card-button">Not Available Yet</div>
+            </div>
+            
+            <!-- CL/MCL (Future) -->
+            <div class="instrument-card disabled-card">
+                <div class="card-emoji">🛢️</div>
+                <div class="card-title">CL / MCL</div>
+                <div class="future-badge">COMING SOON</div>
+                <div class="card-meta">
+                    Micro Light Sweet Crude Oil<br>
+                    <strong>In Development</strong>
+                </div>
+                <div class="card-desc">
+                    Energy sector analysis with 30-second OR ladder rotations. Full analysis suite coming as data collection completes.
+                </div>
+                <div class="card-button">Not Available Yet</div>
+            </div>
         </div>
         
         <footer>
-            Last Updated: April 20, 2026 | All analysis generated from live TradingView backtest data
+            <p>Generated with Ladder Analysis Report System | Updated April 20, 2026</p>
+            <p style="margin-top: 10px; color: #6c7086;">Each instrument shows full 7-tab analysis including ladder overview, P&L, progression probability, daily reach, time & day patterns, risk & reward, and trade analysis.</p>
         </footer>
     </div>
-    
-    <script>
-        function switchInstrument(event, instrument) {
-            // Hide all content
-            document.querySelectorAll('.instrument-content').forEach(el => {
-                el.classList.remove('active');
-            });
-            
-            // Remove active class from all tabs
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Show selected content
-            document.getElementById(instrument).classList.add('active');
-            
-            // Mark selected tab as active
-            event.target.classList.add('active');
-        }
-    </script>
 </body>
 </html>
