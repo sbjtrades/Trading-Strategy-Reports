@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES/MES OR Ladder Rotations - Reports</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+            color: #e0e0e0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 2px solid #4a9eff;
+            padding-bottom: 30px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #4a9eff;
+        }
+        .report-grid {
+            display: grid;
+            gap: 25px;
+        }
+        .report-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        .report-card:hover {
+            background: rgba(74, 158, 255, 0.15);
+            border-color: #4a9eff;
+        }
+        .report-card h3 {
+            color: #4a9eff;
+            margin-bottom: 10px;
+        }
+        .badge {
+            display: inline-block;
+            background: #4a9eff;
+            color: #1e1e2e;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        .btn {
+            display: inline-block;
+            background: #4a9eff;
+            color: #1e1e2e;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 ES/MES OR Ladder Rotations</h1>
+            <p style="font-size: 1.1em; color: #a0a0a0;">Interactive Trading Analysis Reports</p>
+        </header>
+        <div class="report-grid">
+            <div class="report-card">
+                <span class="badge">MASTER REPORT</span>
+                <h3>Backtest Analysis</h3>
+                <p style="color: #c0c0c0; margin: 15px 0;">
+                    Complete analysis of the ES/MES Opening Range ladder rotation strategy.
+                </p>
+                <a href="master/index.html" class="btn">View Report →</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
