@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30-Sec OR Ladder Rotations - Reports</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 2px solid #4a9eff;
+            padding-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #4a9eff;
+            text-shadow: 0 2px 10px rgba(74, 158, 255, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.1em;
+            color: #a0a0a0;
+            margin-bottom: 10px;
+        }
+        
+        .strategy-info {
+            background: rgba(74, 158, 255, 0.1);
+            border-left: 4px solid #4a9eff;
+            padding: 15px 20px;
+            margin-top: 15px;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+        
+        .reports-section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            color: #4a9eff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .report-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .report-card:hover {
+            background: rgba(74, 158, 255, 0.15);
+            border-color: #4a9eff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 158, 255, 0.2);
+        }
+        
+        .report-card h3 {
+            color: #4a9eff;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        
+        .report-meta {
+            font-size: 0.9em;
+            color: #808080;
+            margin-bottom: 15px;
+        }
+        
+        .report-desc {
+            color: #c0c0c0;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #4a9eff;
+            color: #1e1e2e;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95em;
+        }
+        
+        .btn:hover {
+            background: #6bb3ff;
+            box-shadow: 0 4px 12px rgba(74, 158, 255, 0.4);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            color: #808080;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(74, 158, 255, 0.2);
+            color: #606060;
+            font-size: 0.9em;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #4a9eff;
+            color: #1e1e2e;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 30-Sec OR Ladder Rotations</h1>
+            <p class="subtitle">Interactive Trading Analysis Reports</p>
+            <div class="strategy-info">
+                <strong>Instrument:</strong> NQ/MNQ (CME Micro E-mini Nasdaq) | 
+                <strong>Timeframe:</strong> Intraday | 
+                <strong>Entry Method:</strong> 30-second Opening Range Ladder Rotations
+            </div>
+        </header>
+        
+        <!-- Master Report -->
+        <div class="reports-section">
+            <div class="section-title">
+                🎯 Master Report
+            </div>
+            <div class="report-grid">
+                <div class="report-card">
+                    <span class="badge">3-YEAR BACKTEST</span>
+                    <h3>3-Year Analysis</h3>
+                    <div class="report-meta">
+                        📅 Jun 15, 2023 — Apr 14, 2026<br>
+                        📈 7,027 Trades
+                    </div>
+                    <p class="report-desc">
+                        Complete backtest across 3 years of data. Features all 7 tabs: Ladder Overview, P&L, Progression Probability, Daily Reach, Time & Day Patterns, Risk & Reward, and Trade Analysis with full interactive charts.
+                    </p>
+                    <a href="master/index.html" class="btn">View Report →</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Weekly Reports -->
+        <div class="reports-section">
+            <div class="section-title">
+                📅 Weekly Snapshots
+            </div>
+            <div class="report-grid" id="weeklyReports">
+                <div class="report-card">
+                    <span class="badge">WEEK 16</span>
+                    <h3>Week 16 (Apr 13-17)</h3>
+                    <div class="report-meta">
+                        📅 April 13 — April 17, 2026<br>
+                        📈 48 Trades | 3 Contracts
+                    </div>
+                    <p class="report-desc">
+                        Weekly snapshot for the most recent trading week. Includes complete analysis across all 7 tabs with same interactive features as master report.
+                    </p>
+                    <a href="weekly/week16.html" class="btn">View Report →</a>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Generated with <strong>Ladder Analysis Report System</strong> | Private Repository</p>
+            <p>Reports updated weekly with latest trading data | Last updated: April 20, 2026</p>
+        </footer>
+    </div>
+</body>
+</html>
