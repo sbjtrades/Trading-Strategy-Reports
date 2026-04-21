@@ -129,6 +129,9 @@
             <button class="tab-btn" onclick="switchReport(event, 'week16')">
                 📅 Week 16 (Apr 13-17)
             </button>
+            <button class="tab-btn" onclick="switchReport(event, 'drilldown2025')">
+                📈 2025 Drill-Down
+            </button>
         </div>
         
         <div id="master" class="report-content active">
@@ -143,6 +146,15 @@
         <div id="week16" class="report-content">
             <iframe 
                 src="reports/es/week16/index.html" 
+                class="report-frame"
+                frameborder="0"
+                allow="fullscreen"
+            ></iframe>
+        </div>
+        
+        <div id="drilldown2025" class="report-content">
+            <iframe 
+                src="es-2025-drilldown.html" 
                 class="report-frame"
                 frameborder="0"
                 allow="fullscreen"
